@@ -11,14 +11,14 @@ function SavedBooks() {
   // Setting our component's initial state
   const [savedBooks, setSavedBooks] = useState([]);
 
-  // Load all books and store them with setBooks
+  // // Load all books and store them with setBooks
   useEffect(() => {
     loadBooks()
   }, [])
 
   // Loads all books and sets them to books
   function loadBooks() {
-    API.getBooks()
+    API.getBook()
       .then(res =>
         setSavedBooks(res.data)
       )
@@ -26,8 +26,8 @@ function SavedBooks() {
   };
   
   // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
+  function deleteBook() {
+    API.deleteBook()
       .then(res => loadBooks())
       .catch(err => console.log(err));
   }
