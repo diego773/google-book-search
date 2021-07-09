@@ -37,11 +37,11 @@ function Books() {
     event.preventDefault();
     if (result.title && result.authors) {
       API.saveBook({
-        title: result.title,
-        authors: result.author,
-        image: result.thumbnail,
-        description: result.description,
-        link: result.previewLink
+        title: books.title,
+        authors: books.author,
+        image: books.thumbnail,
+        description: books.description,
+        link: books.previewLink
       })
         .then(res => loadBooks())
         .catch(err => console.log(err));
@@ -64,7 +64,7 @@ function Books() {
               placeholder="Enter title, author, or keywords (required)"
             />
             <FormBtn onClick={handleFormSubmit}>Search</FormBtn>
-            {result.length ? (
+            {books.length ? (
               <List>
                 {result.map((books => {
                   console.log(JSON.stringify(books, null, 2));
@@ -73,17 +73,17 @@ function Books() {
                       <Link to={"/books/" + setBooks.id}>
                         <div className="book-title">
                           <strong>
-                            {saveBook.volumeInfo.title} by {saveBook.volumeInfo.authors}
+                            {API.saveBook.volumeInfo.title} by {API.saveBook.volumeInfo.authors}
                           </strong>
                         </div>
                         
                         <img
                           src={
-                            saveBook.volumeInfo.imageLinks === undefined
+                            API.saveBook.volumeInfo.imageLinks === undefined
                             ? ""
-                            : `${saveBook.volumeInfo.imageLinks.thumbnail}`
+                            : `${API.saveBook.volumeInfo.imageLinks.thumbnail}`
                           }
-                          alt={saveBook.volumeInfo.title}
+                          alt={API.saveBook.volumeInfo.title}
                           />
                       </Link>
                       <button
