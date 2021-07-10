@@ -55,7 +55,7 @@ class SavedBooks extends Component {
                       key={book._id}
                       title={book.title}
                       link={book.link}
-                      authors={book.authors.join(", ")}
+                      authors={book.authors}
                       description={book.description}
                       image={book.image}
                       Button={() => (
