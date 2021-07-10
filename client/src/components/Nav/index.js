@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import "./style.css";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar">
       <Link
         to="/"
-        className={
+        className={ 
           window.location.pathname === "/" || window.location.pathname === "/"
-            ? "nav-link active"
-            : "nav-link"
+            ? "nav-link active nav"
+            : "nav-link nav"
         }
+        className="nav"
       >
         Google Books
       </Link>
-      <div className="navbar-nav">
+      <div className="navbar-nav saved link">
         <Link
           to="/savedbooks"
           className=
@@ -22,6 +24,7 @@ function Nav() {
             ? "nav-link active"
             : "nav-link"
           }
+          className="saved"
         >
           Saved Books
         </Link>
