@@ -9,12 +9,12 @@ import { Input, FormBtn } from "../components/Form";
 function Books() {
   // Setting our component's initial state
   const [books, setBooks] = useState([]);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState([]);
 
   // Load all books and store them with setBooks
   useEffect(() => {
     loadBooks()
-  }, [])
+  }, [setBooks])
 
   // Loads all books and sets them to books
   function loadBooks() {
@@ -34,15 +34,15 @@ function Books() {
   // Then reload books from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (result.title && result.authors) {
+    if (result) {
       API.saveBook({
         title: books.title,
-        authors: books.author,
+        authors: books.authors,
         image: books.thumbnail,
         description: books.description,
         link: books.previewLink
       })
-        .then(res => loadBooks())
+        .then(res => loadBooks(res.data))
         .catch(err => console.log(err));
     }
   };
